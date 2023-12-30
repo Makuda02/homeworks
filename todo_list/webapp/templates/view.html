@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ task.title }}{% endblock %}
+{% block menu %}<a class="nav-link active" aria-current="page"   href="{% url 'index' %}">На главную</a>{% endblock %}
+
+{% block content %}
+    <h1>Articles</h1>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-summary">Краткое описание: {{ task.summary }}</h4>
+            <h4 class="card-type">
+                Типы:
+                {% for type in task.types.all %}
+                    {{ type.title }}{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </h4>
+            <h5 class="card-title">Статус: {{ task.status }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">Полное описание: {{ task.description }}</h6>
+            <p class="card-text">{{ task.detailed_description }}</p>
+            <wp>{{ task.data_of_complited }}</wp>
+        </div>
+    </div>
+{% endblock %}

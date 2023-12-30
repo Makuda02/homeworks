@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block menu %}
+<a class="nav-link active" aria-current="page" href="{% url 'task_create' %}">Создать задачу</a>
+{% endblock %}
+{% block content %}
+    <h1>Articles</h1>
+    {% for task in tasks %}
+        <div class="card my-3" style="width: 18rem;">
+            <div class="card-body">
+                <a href="{% url 'task-detail' pk=task.pk %}">{{ task.summary }}</a>
+                <h6 class="card-subtitle mb-2 text-body-secondary">{{ task.description }}</h6>
+                <p class="card-text">{{ task.data_of_complited}}</p>
+                <a href="{% url 'task-detail' pk=task.pk %}" class="card-link">Подробнее...</a>
+                <a href="{% url 'task_update_view' pk=task.pk %}" class="card-link">Редактировать</a>
+                <a href="{% url 'task_delete_view' pk=task.pk %}" class="card-link">Удалить</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
